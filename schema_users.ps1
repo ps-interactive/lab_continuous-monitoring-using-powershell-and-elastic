@@ -11,8 +11,8 @@ $body=@"
 {
     "mappings":{
         "properties":{
-            "Item":{"type":"integer"},
-            "ipaddr":{"type":"ip"},
+            "Item":{"type":"text"},
+            "ipaddr":{"type":"text"},
             "username":{"type":"text"},
             "useragent":{"type":"text"},
             "Message":{"type":"text"}
