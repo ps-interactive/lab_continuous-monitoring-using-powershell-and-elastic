@@ -11,11 +11,11 @@ $body=@"
 {
     "mappings":{
         "properties":{
-            "Item":{"type":"text"},
+            "item":{"type":"text"},
             "ipaddr":{"type":"text"},
             "username":{"type":"text"},
             "useragent":{"type":"text"},
-            "Message":{"type":"text"}
+            "message":{"type":"text"}
         }
     }
 }

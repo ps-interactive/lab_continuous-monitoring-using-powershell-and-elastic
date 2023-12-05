@@ -11,10 +11,10 @@ $suspectusers = Import-CSV /home/pslearner/lab/users.csv
 
 $suspectusers.ForEach({
     $entry=New-Object -TypeName PSCustomObject
-    Add-Member -InputObject $entry -MemberType NoteProperty -Name "Item" -Value $suspectusers[$_].id
-    Add-Member -InputObject $entry -MemberType NoteProperty -Name "ipaddr" -Value $suspectusers[$_].ip_address
-    Add-Member -InputObject $entry -MemberType NoteProperty -Name "username" -Value $suspectusers[$_].username
-    Add-Member -InputObject $entry -MemberType NoteProperty -Name "useragent" -Value $suspectusers[$_].useragent
+    Add-Member -InputObject $entry -MemberType NoteProperty -Name "item" -Value $_.id
+    Add-Member -InputObject $entry -MemberType NoteProperty -Name "ipaddr" -Value $_.ip_address
+    Add-Member -InputObject $entry -MemberType NoteProperty -Name "username" -Value $_.username
+    Add-Member -InputObject $entry -MemberType NoteProperty -Name "useragent" -Value $_.useragent
 
     $body = @"
     $($entry | ConvertTo-Json)
@@ -26,4 +26,4 @@ $suspectusers.ForEach({
 
 $output=Invoke-RestMethod -Uri "https://172.31.24.22:9200/suspectusers/_search?size=1000" -Method Get -Headers $headers -SkipCertificateCheck
 
-$output.hits.hits._source
+$output.hits.hits
