@@ -1,6 +1,6 @@
 $userpass="elastic:yourpassword"
 $userbyte=[System.Text.Encoding]::ASCII.GetBytes($userpass)
-$b64text=[System.Convert]::ToBase64String($userbytes)
+$b64text=[System.Convert]::ToBase64String($userbyte)
 $authHeader="Basic $b64text"
 $headers=@{
     Authorization=$authHeader
