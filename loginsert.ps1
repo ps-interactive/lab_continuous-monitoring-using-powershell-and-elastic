@@ -18,7 +18,7 @@ $suspectusers.ForEach({
 
     $body = @"
     $($entry | ConvertTo-Json)
-    "@
+"@
 
     $output = Invoke-RestMethod -Uri "https://172.31.24.22:9200/suspectusers/_doc" -Method Post -Headers $headers -Body $body -SkipCertificateCheck
 
