@@ -9,9 +9,13 @@ $headers=@{
 
 $winlogs = Import-CSV /home/pslearner/lab/defenderlogs.txt
 
-$logs.ForEach({
+$body=@"
+{ "mappings":{ "properties":{ "message":{"type":"text"} } } }
+"@
+$output = Invoke-RestMethod -Uri "https://172.31.24.22:9200/suspectusers" -Method Put -Headers $headers -Body $body -SkipCertificateCheck
+
+
+$winlogs.ForEach({
     $body = ConvertTo-Json $_
-
-$output = Invoke-RestMethod -Uri "https://172.31.24.22:9200/windowslogs/_doc" -Method Post -Headers $headers -Body $body -SkipCertificateCheck
-
+    $output = Invoke-RestMethod -Uri "https://172.31.24.22:9200/windowslogs/_doc" -Method Post -Headers $headers -Body $body -SkipCertificateCheck
 })
