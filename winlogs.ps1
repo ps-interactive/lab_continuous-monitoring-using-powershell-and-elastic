@@ -11,8 +11,6 @@ $winlogs = Import-CSV /home/pslearner/lab/defenderlogs.txt
 
 $logs.ForEach({
     $body = ConvertTo-Json $_
-    Write-Host $body
-})
 
 $output = Invoke-RestMethod -Uri "https://172.31.24.22:9200/windowslogs/_doc" -Method Post -Headers $headers -Body $body -SkipCertificateCheck
 
