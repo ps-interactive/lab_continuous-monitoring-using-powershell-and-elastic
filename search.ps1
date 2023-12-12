@@ -7,15 +7,15 @@ $headers=@{
     "Content-Type"="application/x-ndjson"
 }
 
-$winlogs = Import-CSV /home/pslearner/lab/defenderlogs.txt
-
 $body=@"
 {
 "query":{
-"query_string" : {"default_field" : "message", "query" : "*MSEDGEWIN10*"}
+"query_string" : {"default_field" : "*", "query" : "Defender*"}
 }
 
 }
 "@
 
 $output = Invoke-RestMethod -Uri "https://172.31.24.22:9200/windowslogs/_search?pretty" -Method Post -Headers $headers -Body $body -SkipCertificateCheck
+
+$output.hits.hits._source
